@@ -102,7 +102,7 @@ export default function Header({ programmes = [], links = {}, notice, phone = '+
             <div className="hidden shrink-0 lg:block"><Brand /></div>
 
             {/* Desktop nav */}
-            <nav className="hidden shrink-0 items-center gap-2 whitespace-nowrap lg:flex xl:gap-3.5" aria-label="Primary">
+            <nav className="hidden shrink-0 items-center gap-3 whitespace-nowrap lg:flex lg:gap-4 xl:gap-5" aria-label="Primary">
               {NAV.map((item) => (
                 <div key={item.href} className={clsx('relative', item.xl && 'hidden xl:block')}>
                   {item.menu ? (
@@ -110,7 +110,7 @@ export default function Header({ programmes = [], links = {}, notice, phone = '+
                       type="button"
                       onClick={toggleProgrammes}
                       className={clsx(
-                        'flex items-center gap-1 py-1.5 text-[12.5px] font-medium transition-colors',
+                        'flex items-center gap-1 px-1 py-1.5 text-[12.5px] font-medium transition-colors',
                         active(item.href) ? 'font-bold text-secondary' : 'text-on-surface-variant hover:text-on-surface',
                       )}
                     >
@@ -120,7 +120,7 @@ export default function Header({ programmes = [], links = {}, notice, phone = '+
                     <Link
                       href={item.href}
                       className={clsx(
-                        'py-1.5 text-[12.5px] font-medium transition-colors',
+                        'px-1 py-1.5 text-[12.5px] font-medium transition-colors',
                         active(item.href) ? 'font-bold text-secondary' : 'text-on-surface-variant hover:text-on-surface',
                       )}
                     >
