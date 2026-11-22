@@ -9,10 +9,10 @@ export default function Tabs({ tabs = [], label = 'Tabs' }) {
   if (!tabs.length) return null;
   return (
     <div>
-      <div role="tablist" aria-label={label} className="flex flex-wrap gap-2 border-b border-line">
+      <div role="tablist" aria-label={label} className="flex flex-wrap gap-2 border-b border-outline-variant/50">
         {tabs.map((t) => (
           <button key={t.id} role="tab" id={`tab-${t.id}`} aria-selected={t.id === current.id} aria-controls={`panel-${t.id}`} onClick={() => setActive(t.id)}
-            className={clsx('-mb-px border-b-2 px-4 py-3 text-sm font-semibold transition', t.id === current.id ? 'border-gold text-navy' : 'border-transparent text-muted hover:text-navy')}>
+            className={clsx('-mb-px border-b-2 px-4 py-3 text-label-prominent transition', t.id === current.id ? 'border-secondary text-primary-container' : 'border-transparent text-on-surface-variant hover:text-primary-container')}>
             {t.label}
           </button>
         ))}

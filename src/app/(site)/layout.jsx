@@ -8,7 +8,8 @@ export default async function SiteLayout({ children }) {
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2">Skip to content</a>
       <Header programmes={programmes} links={settings.links} notice={settings.notice} phone={settings.contact?.helpline} />
-      <main id="main">{children}</main>
+      {/* Offset the fixed header (utility strip + compact bar) and the mobile bottom navigation */}
+      <main id="main" className="pb-16 pt-[76px] md:pb-0 md:pt-[84px]">{children}</main>
       <Footer programmes={programmes} contact={settings.contact} links={settings.links} />
     </>
   );

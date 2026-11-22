@@ -31,24 +31,26 @@ export default function ApplicationForm({ programmes = [], defaultProgramme = ''
 
   if (result?.data) {
     return (
-      <div className="rounded-card border border-green-200 bg-green-50 p-8 text-center md:p-12" role="status">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-green-700" />
-        <h3 className="mt-4 font-serif text-2xl text-navy">Application submitted</h3>
-        <p className="mt-2 text-ink/80">Thank you! Your application for <strong>{result.data.programme}</strong> has been received.</p>
-        <p className="mx-auto mt-5 inline-block rounded-control border border-gold/50 bg-white px-6 py-3">
-          <span className="block text-xs uppercase tracking-eyebrow text-muted">Application number</span>
-          <span className="font-serif text-2xl text-navy">{result.data.applicationNo}</span>
+      <div className="rounded-2xl border border-[#c6e3cd] bg-[#eef8f1] p-8 text-center shadow-sm md:p-12" role="status">
+        <CheckCircle2 className="mx-auto h-12 w-12 text-[#1f6b3a]" />
+        <h3 className="mt-4 font-serif text-headline-md text-primary-container">Application registered successfully</h3>
+        <p className="mt-2 text-body-md text-on-surface-variant">
+          Thank you! Your application for <strong className="text-primary-container">{result.data.programme}</strong> has been received.
         </p>
-        <p className="mt-5 text-sm text-ink/70">Please keep this number for future reference. Our admissions desk will contact you about the next steps.</p>
+        <p className="mx-auto mt-5 inline-block rounded-xl border border-tertiary-fixed-dim/60 bg-surface-container-lowest px-6 py-3">
+          <span className="block text-label-prestige-eyebrow uppercase tracking-wider text-on-surface-variant">Application number</span>
+          <span className="font-serif text-headline-sm text-primary-container">{result.data.applicationNo}</span>
+        </p>
+        <p className="mt-5 text-body-sm text-on-surface-variant">Please keep this number for future reference. Our admissions desk will contact you about the next steps.</p>
       </div>
     );
   }
 
   const e = fieldErrors;
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-8 rounded-card border border-navy/10 bg-white p-6 shadow-card md:p-10">
+    <form onSubmit={onSubmit} noValidate className="space-y-8 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-sm md:p-10">
       <fieldset className="space-y-4">
-        <legend className="mb-2 font-serif text-xl text-navy">1. Programme</legend>
+        <legend className="mb-2 font-serif text-headline-sm text-primary-container">1. Programme</legend>
         <Field label="Programme applying for" name="programme" error={e.programme} required>
           <select id="programme" name="programme" className="input" defaultValue={defaultProgramme} required>
             <option value="" disabled>Select a programme</option>
@@ -58,7 +60,7 @@ export default function ApplicationForm({ programmes = [], defaultProgramme = ''
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="mb-2 font-serif text-xl text-navy">2. Personal details</legend>
+        <legend className="mb-2 font-serif text-headline-sm text-primary-container">2. Personal details</legend>
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="Full name" name="fullName" error={e['applicant.fullName']} required><input id="fullName" name="fullName" className="input" autoComplete="name" required /></Field>
           <Field label="Email" name="email" error={e['applicant.email']} required><input id="email" name="email" type="email" className="input" autoComplete="email" required /></Field>
@@ -75,7 +77,7 @@ export default function ApplicationForm({ programmes = [], defaultProgramme = ''
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="mb-2 font-serif text-xl text-navy">3. Academic background</legend>
+        <legend className="mb-2 font-serif text-headline-sm text-primary-container">3. Academic background</legend>
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="Last qualification" name="lastQualification"><input id="lastQualification" name="lastQualification" className="input" placeholder="e.g. B.Com / 12th (Science)" /></Field>
           <Field label="School / University" name="institution"><input id="institution" name="institution" className="input" /></Field>
@@ -87,14 +89,14 @@ export default function ApplicationForm({ programmes = [], defaultProgramme = ''
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="mb-2 font-serif text-xl text-navy">4. Statement of purpose</legend>
+        <legend className="mb-2 font-serif text-headline-sm text-primary-container">4. Statement of purpose</legend>
         <Field label="Why do you want to join HBS? (optional)" name="statementOfPurpose" error={e.statementOfPurpose}>
           <textarea id="statementOfPurpose" name="statementOfPurpose" className="input min-h-[140px]" maxLength={3000} />
         </Field>
       </fieldset>
 
-      <label className="flex cursor-pointer items-start gap-3 text-sm text-ink/80">
-        <input type="checkbox" checked={consent} onChange={(ev) => setConsent(ev.target.checked)} className="mt-0.5 h-5 w-5 rounded border-muted accent-navy" />
+      <label className="flex cursor-pointer items-start gap-3 text-body-sm text-on-surface-variant">
+        <input type="checkbox" checked={consent} onChange={(ev) => setConsent(ev.target.checked)} className="mt-0.5 h-5 w-5 rounded border-outline accent-[#101D35]" />
         <span>I declare that the information provided is correct and I consent to Hierank Business School contacting me about my application.</span>
       </label>
       {e.consent && <p className="field-error">{e.consent}</p>}

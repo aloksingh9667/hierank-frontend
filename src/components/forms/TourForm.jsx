@@ -17,17 +17,17 @@ export default function TourForm({ programmes = ['MBA', 'MCA', 'BBA', 'BCA'] }) 
 
   if (result) {
     return (
-      <div className="rounded-card border border-green-200 bg-green-50 p-8 text-center" role="status">
-        <CheckCircle2 className="mx-auto h-10 w-10 text-green-700" />
-        <h3 className="mt-3 font-serif text-xl text-navy">Tour requested</h3>
-        <p className="mt-2 text-sm">{result.message}</p>
+      <div className="rounded-2xl border border-[#c6e3cd] bg-[#eef8f1] p-8 text-center shadow-sm" role="status">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-[#1f6b3a]" />
+        <h3 className="mt-3 font-serif text-headline-sm text-primary-container">Tour requested</h3>
+        <p className="mt-2 text-body-sm text-on-surface-variant">{result.message}</p>
         <button type="button" onClick={reset} className="link-arrow mt-4">Request another visit</button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-4 rounded-card border border-navy/10 bg-white p-6 md:p-8">
+    <form onSubmit={onSubmit} noValidate className="space-y-4 rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-6 shadow-sm md:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Full name" name="tour-name" error={fieldErrors.name} required><input id="tour-name" name="name" className="input" required /></Field>
         <Field label="Mobile number" name="tour-phone" error={fieldErrors.phone} required><input id="tour-phone" name="phone" type="tel" className="input" required /></Field>

@@ -19,15 +19,16 @@ const STEPS = [
 
 export default async function AdmissionsPage({ searchParams }) {
   const [programmes, settings] = await Promise.all([getProgrammes(), getSettings()]);
+  const sp = await searchParams;
   const dates = settings.importantDates || [];
-  const preselect = programmes.find((p) => p.slug === searchParams?.programme)?.slug || '';
+  const preselect = programmes.find((p) => p.slug === sp?.programme)?.slug || '';
 
   const tabs = programmes.map((p) => ({
     id: p.slug, label: p.code,
     content: (
       <div className="grid gap-8 lg:grid-cols-2">
-        <div className="card"><p className="eyebrow mb-1">{p.level === 'PG' ? 'Postgraduate' : 'Undergraduate'} · {p.duration}</p><h3 className="h-sm mb-5">{p.code} eligibility</h3><CheckList items={p.eligibility} /></div>
-        <div className="card"><h3 className="h-sm mb-5">Required documents ({p.code})</h3><CheckList items={p.requiredDocuments} /></div>
+        <div className="card"><p className="eyebrow mb-1">{p.level === 'PG' ? 'Postgraduate' : 'Undergraduate'} · {p.duration}</p><h3 className="mb-5 font-serif text-headline-sm text-primary-container">{p.code} eligibility</h3><CheckList items={p.eligibility} /></div>
+        <div className="card"><h3 className="mb-5 font-serif text-headline-sm text-primary-container">Required documents ({p.code})</h3><CheckList items={p.requiredDocuments} /></div>
       </div>
     ),
   }));
@@ -35,37 +36,53 @@ export default async function AdmissionsPage({ searchParams }) {
   return (
     <>
       <PageHero eyebrow="Admissions · Cohort 2026" title="Admissions & Enrolment" crumbs={[{ label: 'Admissions' }]}
-        actions={<><a href="#apply" className="btn-gold">Begin Application</a><a href="#eligibility" className="btn border-[1.5px] border-white/40 text-white hover:bg-white/10">View Eligibility</a></>}>
+        actions={
+          <>
+            <a href="#apply" className="btn-gold">Begin Application</a>
+            <a href="#eligibility" className="btn-outline">View Eligibility</a>
+          </>
+        }>
         A transparent, merit-driven process designed to identify candidates who will thrive at Hierank — across MBA, MCA, BBA and BCA.
       </PageHero>
 
-      <section className="section">
+      <section className="section bg-surface-bright">
         <div className="container-page">
           <SectionHeading eyebrow="Selection Journey" title="4-Step Admission Process" />
           <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s, i) => (
               <li key={s.t} className="card card-hover relative">
-                <span className="absolute right-6 top-4 font-serif text-5xl text-gold/30">0{i + 1}</span>
-                <s.icon className="h-8 w-8 text-gold-dark" /><h3 className="h-sm mt-5">{s.t}</h3><p className="mt-2 text-sm leading-6 text-muted">{s.d}</p>
+                <span className="absolute right-6 top-4 font-serif text-5xl text-tertiary-fixed-dim/40">0{i + 1}</span>
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-container-low text-on-tertiary-container"><s.icon className="h-6 w-6" /></span>
+                <h3 className="mt-5 font-serif text-title-editorial font-semibold text-primary-container">{s.t}</h3>
+                <p className="mt-2 text-body-sm leading-6 text-on-surface-variant">{s.d}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section className="section bg-tint" id="eligibility">
-        <div className="container-page"><SectionHeading eyebrow="Academic Standards" title="Eligibility Criteria & Required Documents" /><div className="mt-10"><Tabs tabs={tabs} label="Programme eligibility" /></div></div>
+      <section className="section bg-surface-container-low" id="eligibility">
+        <div className="container-page">
+          <SectionHeading eyebrow="Academic Standards" title="Eligibility Criteria & Required Documents" />
+          <div className="mt-10"><Tabs tabs={tabs} label="Programme eligibility" /></div>
+        </div>
       </section>
 
-      <section className="section">
+      <section className="section bg-surface-bright">
         <div className="container-page grid gap-10 lg:grid-cols-2">
           <div>
             <SectionHeading eyebrow="Academic Calendar" title="Important Dates" />
             {dates.length ? (
-              <ul className="mt-8 divide-y divide-line rounded-card border border-navy/10 bg-white">
-                {dates.map((d) => <li key={d.label} className="flex items-center gap-4 p-5"><Calendar className="h-5 w-5 text-gold-dark" /><div className="flex-1"><p className="font-semibold text-navy">{d.label}</p>{d.note && <p className="text-xs text-muted">{d.note}</p>}</div><span className="text-sm font-semibold">{formatDate(d.date)}</span></li>)}
+              <ul className="mt-8 divide-y divide-outline-variant/40 overflow-hidden rounded-2xl border border-outline-variant/40 bg-surface-container-lowest shadow-sm">
+                {dates.map((d) => (
+                  <li key={d.label} className="flex items-center gap-4 p-5">
+                    <Calendar className="h-5 w-5 shrink-0 text-on-tertiary-container" />
+                    <div className="flex-1"><p className="text-label-prominent font-semibold text-primary-container">{d.label}</p>{d.note && <p className="text-caption text-on-surface-variant">{d.note}</p>}</div>
+                    <span className="text-body-sm font-semibold text-primary-container">{formatDate(d.date)}</span>
+                  </li>
+                ))}
               </ul>
-            ) : <p className="mt-8 rounded-card border border-dashed border-navy/20 bg-white p-6 text-sm text-muted">Admission cycle dates are announced by the admissions desk. Contact us for the latest schedule and scholarship deadlines.</p>}
+            ) : <p className="mt-8 rounded-2xl border border-dashed border-outline-variant bg-surface-container-lowest p-6 text-body-sm text-on-surface-variant">Admission cycle dates are announced by the admissions desk. Contact us for the latest schedule and scholarship deadlines.</p>}
           </div>
           <div>
             <SectionHeading eyebrow="Talk to Us" title="Admissions Desks" />
@@ -74,7 +91,7 @@ export default async function AdmissionsPage({ searchParams }) {
         </div>
       </section>
 
-      <section className="section bg-white" id="apply">
+      <section className="section bg-surface-container-low" id="apply">
         <div className="container-page max-w-4xl">
           <SectionHeading eyebrow="Candidate Application" title="Apply Online — Cohort 2026" align="center">Takes about five minutes. You will receive an application number on submission.</SectionHeading>
           <div className="mt-10"><ApplicationForm programmes={programmes} defaultProgramme={preselect} /></div>

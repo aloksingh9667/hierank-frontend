@@ -16,17 +16,25 @@ export default async function ContactPage() {
   const mapQuery = encodeURIComponent('Hierank Business School, A-42 Institutional Area, Sector 62, Noida');
   return (
     <>
-      <PageHero eyebrow="Contact Us & Campus Visits" title="We’d Love to Hear from You" crumbs={[{ label: 'Contact' }]}>Reach our admissions council, placement cell or book a visit to the campus.</PageHero>
+      <PageHero eyebrow="Contact Us & Campus Visits" title="We'd Love to Hear from You" crumbs={[{ label: 'Contact' }]}>
+        Reach our admissions council, placement cell or book a visit to the campus.
+      </PageHero>
 
-      <section className="section">
+      <section className="section bg-surface-bright">
         <div className="container-page grid gap-12 lg:grid-cols-12">
           <div className="space-y-8 lg:col-span-5">
             <SectionHeading eyebrow="Campus" title="Hierank Business School" />
-            <ul className="space-y-4 text-[15px]">
-              <li className="flex gap-3"><MapPin className="mt-1 h-5 w-5 shrink-0 text-gold-dark" /><span>{c.address}</span></li>
-              <li className="flex gap-3"><Phone className="mt-1 h-5 w-5 shrink-0 text-gold-dark" /><span><a href={telHref(c.helpline || '')} className="hover:text-royal">{c.helpline}</a>{c.whatsapp && <> · WhatsApp {c.whatsapp}</>}</span></li>
-              <li className="flex gap-3"><Mail className="mt-1 h-5 w-5 shrink-0 text-gold-dark" /><span>{(c.emails || []).map((e, i) => <span key={e}>{i > 0 && ' · '}<a href={`mailto:${e}`} className="hover:text-royal">{e}</a></span>)}</span></li>
-              <li className="flex gap-3"><TrainFront className="mt-1 h-5 w-5 shrink-0 text-gold-dark" /><span>Near Sector-63 Metro Station (Noida Electronic City line, Blue Line).</span></li>
+            <ul className="space-y-4 text-body-md text-on-surface-variant">
+              <li className="flex gap-3"><MapPin className="mt-1 h-5 w-5 shrink-0 text-on-tertiary-container" /><span>{c.address}</span></li>
+              <li className="flex gap-3">
+                <Phone className="mt-1 h-5 w-5 shrink-0 text-on-tertiary-container" />
+                <span><a href={telHref(c.helpline || '')} className="transition-colors hover:text-secondary">{c.helpline}</a>{c.whatsapp && <> · WhatsApp {c.whatsapp}</>}</span>
+              </li>
+              <li className="flex gap-3">
+                <Mail className="mt-1 h-5 w-5 shrink-0 text-on-tertiary-container" />
+                <span>{(c.emails || []).map((e, i) => <span key={e}>{i > 0 && ' · '}<a href={`mailto:${e}`} className="transition-colors hover:text-secondary">{e}</a></span>)}</span>
+              </li>
+              <li className="flex gap-3"><TrainFront className="mt-1 h-5 w-5 shrink-0 text-on-tertiary-container" /><span>Near Sector-63 Metro Station (Noida Electronic City line, Blue Line).</span></li>
             </ul>
             <ContactDesks desks={c.desks || []} />
             <a href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noreferrer" className="btn-secondary"><MapPin className="h-4 w-4" />Open in Google Maps</a>
@@ -38,9 +46,11 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <section className="section bg-tint" id="tour">
+      <section className="section bg-surface-container-low" id="tour">
         <div className="container-page grid items-start gap-12 lg:grid-cols-2">
-          <SectionHeading eyebrow="Directions & Campus Tour" title="Book a Campus Tour">Walk through smart classrooms, the library and labs, and meet our admissions team. Tours run on weekdays by appointment.</SectionHeading>
+          <SectionHeading eyebrow="Directions & Campus Tour" title="Book a Campus Tour">
+            Walk through smart classrooms, the library and labs, and meet our admissions team. Tours run on weekdays by appointment.
+          </SectionHeading>
           <TourForm programmes={codes.length ? codes : undefined} />
         </div>
       </section>

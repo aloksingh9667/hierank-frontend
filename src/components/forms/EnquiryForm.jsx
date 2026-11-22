@@ -17,17 +17,21 @@ export default function EnquiryForm({ source = 'contact', programmes = DEFAULT_P
 
   if (result) {
     return (
-      <div className="rounded-card border border-green-200 bg-green-50 p-8 text-center" role="status">
-        <CheckCircle2 className="mx-auto h-10 w-10 text-green-700" />
-        <h3 className="mt-3 font-serif text-xl text-navy">Enquiry received</h3>
-        <p className="mt-2 text-sm text-ink/80">{result.message}</p>
+      <div className="rounded-2xl border border-[#c6e3cd] bg-[#eef8f1] p-8 text-center shadow-sm" role="status">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-[#1f6b3a]" />
+        <h3 className="mt-3 font-serif text-headline-sm text-primary-container">Enquiry received</h3>
+        <p className="mt-2 text-body-sm text-on-surface-variant">{result.message}</p>
         <button type="button" onClick={reset} className="link-arrow mt-4">Send another enquiry</button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className={`space-y-4 rounded-card p-6 md:p-8 ${dark ? 'bg-white shadow-modal' : 'border border-navy/10 bg-white'}`}>
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      className={`space-y-3 rounded-xl p-4 md:p-5 ${dark ? 'bg-surface-container-lowest shadow-modal' : 'border border-outline-variant/40 bg-surface-container-lowest shadow-sm'}`}
+    >
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Full name" name={`${idPrefix}-name`} error={fieldErrors.name} required>
           <input id={`${idPrefix}-name`} name="name" className="input" autoComplete="name" placeholder="Your full name" required />
@@ -55,7 +59,7 @@ export default function EnquiryForm({ source = 'contact', programmes = DEFAULT_P
       <button type="submit" disabled={loading} className="btn-primary w-full">
         {loading && <Loader2 className="h-4 w-4 animate-spin" />}{loading ? 'Submitting…' : submitLabel}
       </button>
-      <p className="text-center text-xs text-muted">By submitting you agree to be contacted by HBS regarding your enquiry.</p>
+      <p className="text-center text-caption text-on-surface-variant">By submitting you agree to be contacted by HBS regarding your enquiry.</p>
     </form>
   );
 }
