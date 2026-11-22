@@ -82,7 +82,7 @@ export default async function HomePage() {
           <div className="lg:col-span-5">
             <div className="relative overflow-hidden rounded-xl shadow-modal">
               <div className="h-[280px] md:h-[350px]">
-                <Media src={heroImage} label="Learning that leads to leadership" alt="Hierank Business School campus" />
+                <Media src={heroImage} alt="Hierank Business School campus" />
               </div>
               <div className="absolute inset-x-3 bottom-3 flex items-center gap-3 rounded-lg bg-surface-container-lowest/95 p-3 shadow-card backdrop-blur">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-container text-tertiary-fixed">

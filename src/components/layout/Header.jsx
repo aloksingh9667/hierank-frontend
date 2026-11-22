@@ -102,7 +102,7 @@ export default function Header({ programmes = [], links = {}, notice, phone = '+
             <div className="hidden shrink-0 lg:block"><Brand /></div>
 
             {/* Desktop nav */}
-            <nav className="hidden shrink-0 items-center gap-2 whitespace-nowrap lg:flex xl:gap-4" aria-label="Primary">
+            <nav className="hidden shrink-0 items-center gap-2 whitespace-nowrap lg:flex xl:gap-3.5" aria-label="Primary">
               {NAV.map((item) => (
                 <div key={item.href} className={clsx('relative', item.xl && 'hidden xl:block')}>
                   {item.menu ? (
@@ -110,17 +110,17 @@ export default function Header({ programmes = [], links = {}, notice, phone = '+
                       type="button"
                       onClick={toggleProgrammes}
                       className={clsx(
-                        'flex items-center gap-1 py-1.5 text-[11px] font-medium transition-colors',
+                        'flex items-center gap-1 py-1.5 text-[12.5px] font-medium transition-colors',
                         active(item.href) ? 'font-bold text-secondary' : 'text-on-surface-variant hover:text-on-surface',
                       )}
                     >
-                      {item.label}<ChevronDown className="h-3 w-3" />
+                      {item.label}<ChevronDown className="h-3.5 w-3.5" />
                     </button>
                   ) : (
                     <Link
                       href={item.href}
                       className={clsx(
-                        'py-1.5 text-[11px] font-medium transition-colors',
+                        'py-1.5 text-[12.5px] font-medium transition-colors',
                         active(item.href) ? 'font-bold text-secondary' : 'text-on-surface-variant hover:text-on-surface',
                       )}
                     >
@@ -142,7 +142,7 @@ export default function Header({ programmes = [], links = {}, notice, phone = '+
 
             {/* Right actions */}
             <div className="hidden shrink-0 items-center gap-2 lg:flex">
-              <Link href="/admissions#apply" className="whitespace-nowrap rounded-lg bg-primary-container px-3 py-1.5 text-[11px] font-bold text-on-primary shadow-sm ring-1 ring-tertiary-fixed-dim/30 transition-all hover:bg-secondary">
+              <Link href="/admissions#apply" className="whitespace-nowrap rounded-lg bg-primary-container px-3.5 py-1.5 text-[12px] font-bold text-on-primary shadow-sm ring-1 ring-tertiary-fixed-dim/30 transition-all hover:bg-secondary">
                 Apply Now
               </Link>
               <Link href="/admin" aria-label="Admin portal" className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-on-primary">
